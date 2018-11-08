@@ -4,7 +4,7 @@ class Ball{
         this.gameHeight = gameHeight
         this.radius = 5
         this.position = {
-            x: 10 + this.radius,
+            x: 0 + this.radius,
             y: 0 + this.radius
         }
         this.speed = 5
@@ -17,7 +17,8 @@ class Ball{
         //collision detection on walls
         if(this.position.x + this.radius > this.gameWidth || this.position.x - this.radius < 0 ){
             this.dx = -this.dx
-        }else if(this.position.y + this.radius > this.gameHeight || this.position.y - this.radius < 0 ){
+        }
+        if(this.position.y + this.radius > this.gameHeight || this.position.y - this.radius < 0 ){
             this.dy = -this.dy
         }
         this.position.x += this.dx
