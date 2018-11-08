@@ -1,15 +1,15 @@
 class Paddle {
-    constructor(gameWidth, gameHeight) {
-        this.gameWidth = gameWidth
-        this.gameHeight = gameHeight
-        this.width = 75
-        this.height = 10
+    constructor(config) {
+        this.gameWidth = config.game.width
+        this.gameHeight = config.game.height
+        this.width = config.paddle.width
+        this.height = config.paddle.height
         this.position = {
             x: (this.gameWidth / 2) - (this.width / 2),
             y: this.gameHeight - this.height
         }
         this.speed = 0
-        this.maxSpeed = 7
+        this.maxSpeed = config.paddle.speed
     }
 
     update() {

@@ -1,13 +1,13 @@
 class Ball{
-    constructor(gameWidth, gameHeight){
-        this.gameWidth = gameWidth
-        this.gameHeight = gameHeight
-        this.radius = 5
+    constructor(config){
+        this.gameWidth = config.game.width
+        this.gameHeight = config.game.height
+        this.radius = config.ball.radius
         this.centerCoordinates = {
             x: 0 + this.radius,
             y: 0 + this.radius
         }
-        this.speed = 5
+        this.speed = config.ball.speed
         this.dx = this.speed
         this.dy = this.speed
         this.collision = false

@@ -1,18 +1,16 @@
 import Paddle from './paddle.js'
 import Events from './events.js'
 import Ball from './ball.js'
+import config from './config.js'
 
 let canvas = document.getElementById('game')
 let ctx = canvas.getContext('2d')
 
-let gameWidth = 400
-let gameHeight = 500
+canvas.width = config.game.width
+canvas.height = config.game.height
 
-canvas.width = gameWidth
-canvas.height = gameHeight
-
-let paddle = new Paddle(gameWidth, gameHeight)
-let ball = new Ball(gameWidth, gameHeight)
+let paddle = new Paddle(config)
+let ball = new Ball(config)
 new Events(paddle)
 
 function gameLoop(){
