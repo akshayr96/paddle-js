@@ -12,17 +12,8 @@ class Paddle {
         this.maxSpeed = 7
     }
 
-    // lifecycle methods
     update() {
-        // collision detection of paddle on left and right walls
-        if(this.position.x < 0){
-            this.position.x = 0
-            return
-        }else if(this.position.x + this.width > this.gameWidth){
-            this.position.x = this.gameWidth - this.width
-            return
-        }
-        // When no collision is detected
+        this.handleCollisions()
         this.position.x += this.speed
     }
 
@@ -31,7 +22,14 @@ class Paddle {
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
-    // actions
+    handleCollisions(){
+        if(this.position.x < 0){
+            this.position.x = 0
+        }else if(this.position.x + this.width > this.gameWidth){
+            this.position.x = this.gameWidth - this.width
+        }
+    }
+
     moveLeft(){
         this.speed = -this.maxSpeed
     }

@@ -4,24 +4,24 @@ class Events{
             switch(event.keyCode){
                 case 37:
                     paddle.moveLeft()
-                    break;
+                    break
                 case 39:
                     paddle.moveRight()
-                    break;
+                    break
             }
         })
-        document.addEventListener('keyup', function handleKeyDown(event){
+        document.addEventListener('keyup', function handleKeyUp(event){
             switch(event.keyCode){
                 case 37:
                     if(paddle.speed < 0){
                         paddle.stop()
                     }
-                    break;
+                    break
                 case 39:
                     if(paddle.speed > 0){
                         paddle.stop()
                     }
-                    break;
+                    break
             }
         })
     }
