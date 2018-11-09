@@ -28,36 +28,44 @@ class Ball{
     }
 
     handleCollisions(){
-        let collidesWithHarizontalWalls =
-            this.centerCoordinates.x + this.radius > this.gameWidth ||
-            this.centerCoordinates.x - this.radius < 0
-
-        let collidesWithVerticalWalls =
-            this.centerCoordinates.y + this.radius > this.gameHeight ||
-            this.centerCoordinates.y - this.radius < 0
-
-        if(collidesWithHarizontalWalls == true){
-            this.dx = -this.dx
-        }
-
-        if(collidesWithVerticalWalls == true){
-            this.dy = -this.dy
-        }
-
+        let topOfBall = this.centerCoordinates.y - this.radius
         let bottomOfBall = this.centerCoordinates.y + this.radius
         let leftOfBall = this.centerCoordinates.x - this.radius
         let rightOfBall = this.centerCoordinates.x + this.radius
         let leftOfPaddle = this.paddle.position.x
         let rightOfPaddle = this.paddle.position.x + this.paddle.width
         let topOfPaddle = this.gameHeight - this.paddle.height
+
+        let collidesWithVerticalWalls =
+            rightOfBall > this.gameWidth ||
+            leftOfBall < 0
+
+        let collidesWithHarizontalWalls =
+            bottomOfBall > this.gameHeight ||
+            topOfBall < 0
         
         let collidesWithPaddle = 
             bottomOfBall > topOfPaddle &&
             leftOfBall > leftOfPaddle &&
             rightOfBall < rightOfPaddle
 
+        if(collidesWithVerticalWalls == true){
+            this.dx = -this.dx
+        }
+
+        if(collidesWithHarizontalWalls == true){
+            this.dy = -this.dy
+        }
+
         if(collidesWithPaddle == true){
             this.dy = -this.dy
+        }
+    }
+
+    resetPosition(){
+        this.centerCoordinates = {
+            x: 0 + this.radius,
+            y: 0 + this.radius
         }
     }
 }
