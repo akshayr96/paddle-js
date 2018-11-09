@@ -10,7 +10,7 @@ canvas.width = config.game.width
 canvas.height = config.game.height
 
 let paddle = new Paddle(config)
-let ball = new Ball(config)
+let ball = new Ball(config, paddle)
 new Events(paddle)
 
 function gameLoop(){

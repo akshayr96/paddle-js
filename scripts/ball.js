@@ -1,5 +1,5 @@
 class Ball{
-    constructor(config){
+    constructor(config, paddle){
         this.gameWidth = config.game.width
         this.gameHeight = config.game.height
         this.radius = config.ball.radius
@@ -11,6 +11,7 @@ class Ball{
         this.dx = this.speed
         this.dy = this.speed
         this.collision = false
+        this.paddle = paddle
     }
 
     update(){
@@ -40,6 +41,22 @@ class Ball{
         }
 
         if(collidesWithVerticalWalls == true){
+            this.dy = -this.dy
+        }
+
+        let bottomOfBall = this.centerCoordinates.y + this.radius
+        let leftOfBall = this.centerCoordinates.x - this.radius
+        let rightOfBall = this.centerCoordinates.x + this.radius
+        let leftOfPaddle = this.paddle.position.x
+        let rightOfPaddle = this.paddle.position.x + this.paddle.width
+        let topOfPaddle = this.gameHeight - this.paddle.height
+        
+        let collidesWithPaddle = 
+            bottomOfBall > topOfPaddle &&
+            leftOfBall > leftOfPaddle &&
+            rightOfBall < rightOfPaddle
+
+        if(collidesWithPaddle == true){
             this.dy = -this.dy
         }
     }
