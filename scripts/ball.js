@@ -46,8 +46,8 @@ class Ball{
         
         let collidesWithPaddle = 
             bottomOfBall > topOfPaddle &&
-            leftOfBall > leftOfPaddle &&
-            rightOfBall < rightOfPaddle
+            rightOfBall > leftOfPaddle &&
+            leftOfBall < rightOfPaddle
 
         if(collidesWithVerticalWalls == true){
             this.dx = -this.dx
