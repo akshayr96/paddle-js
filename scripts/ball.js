@@ -56,9 +56,12 @@ class Ball{
         if(collidesWithHarizontalWalls == true){
             this.dy = -this.dy
         }
-
-        if(collidesWithPaddle == true){
-            this.dy = -this.dy
+        if(bottomOfBall > topOfPaddle){
+            if(collidesWithPaddle == true){
+                this.dy = -this.dy
+            }else{
+                this.resetPosition()
+            }
         }
     }
 
