@@ -11,6 +11,12 @@ let config = {
         width: 75,
         height: 10,
         speed: 7
+    },
+    brick: {
+        height: 15,
+        border: 2,
+        fill: "#66ccff",
+        stroke: "#fff"
     }
 }
 
