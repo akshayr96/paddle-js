@@ -22,6 +22,13 @@ class Paddle {
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
+    getPaddleCoordinates(){
+        let leftOfPaddle = this.position.x
+        let rightOfPaddle = this.position.x + this.width
+        let topOfPaddle = this.gameHeight - this.height
+        return { topOfPaddle, rightOfPaddle, leftOfPaddle }
+    }
+
     handleCollisions(){
         if(this.position.x < 0){
             this.position.x = 0

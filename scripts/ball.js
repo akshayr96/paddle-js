@@ -27,14 +27,17 @@ class Ball{
         ctx.fill()
     }
 
-    handleCollisions(){
+    getBallCoordinates(){
         let topOfBall = this.centerCoordinates.y - this.radius
         let bottomOfBall = this.centerCoordinates.y + this.radius
         let leftOfBall = this.centerCoordinates.x - this.radius
         let rightOfBall = this.centerCoordinates.x + this.radius
-        let leftOfPaddle = this.paddle.position.x
-        let rightOfPaddle = this.paddle.position.x + this.paddle.width
-        let topOfPaddle = this.gameHeight - this.paddle.height
+        return { topOfBall, bottomOfBall, leftOfBall, rightOfBall }
+    }
+
+    handleCollisions(){
+        let { topOfBall, bottomOfBall, leftOfBall, rightOfBall } = this.getBallCoordinates()
+        let { topOfPaddle, rightOfPaddle, leftOfPaddle } = this.paddle.getPaddleCoordinates()
 
         let collidesWithVerticalWalls =
             rightOfBall > this.gameWidth ||
