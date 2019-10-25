@@ -32,7 +32,7 @@ class Ball{
         let bottomOfBall = this.centerCoordinates.y + this.radius
         let leftOfBall = this.centerCoordinates.x - this.radius
         let rightOfBall = this.centerCoordinates.x + this.radius
-        return { topOfBall, bottomOfBall, leftOfBall, rightOfBall }
+        return { topOfBall, bottomOfBall, leftOfBall, rightOfBall, centerCoordinates: this.centerCoordinates }
     }
 
     handleCollisions(){

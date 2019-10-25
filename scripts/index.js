@@ -13,7 +13,7 @@ canvas.height = config.game.height
 
 let paddle = new Paddle(config)
 let ball = new Ball(config, paddle)
-let bricks = new Bricks(config, levels)
+let bricks = new Bricks(config, levels, ball)
 new Events(paddle)
 
 function gameLoop(){
