@@ -16,12 +16,19 @@ class Bricks {
     update(){
         const { topOfBall, bottomOfBall, leftOfBall, rightOfBall, centerCoordinates } = this.ball.getBallCoordinates()
         const bricksAreaHeight = this.height * this.levels[this.level].length
+        //Checks if the ball is in the area of the bricks
         if(bricksAreaHeight > topOfBall || bricksAreaHeight > bottomOfBall){
-           const { x, y } = this.mapCoordinatesToBrickIndex(centerCoordinates.x, topOfBall)
-           if(this.levels[this.level][y][x]){
-               this.levels[this.level][y][x] = 0
-               this.ball.dy = - this.ball.dy
-           }
+            const topOfTheBallBrickIndex = this.mapCoordinatesToBrickIndex(centerCoordinates.x, topOfBall);
+            const bottomOfTheBallBrickIndex = this.mapCoordinatesToBrickIndex(centerCoordinates.x, bottomOfBall);
+            //collision detection and updated for the top and bottom tips of the ball
+            [topOfTheBallBrickIndex, bottomOfTheBallBrickIndex]
+                .forEach((brickIndex) => {
+                    const { x, y } = brickIndex
+                    if(this.levels[this.level][y] && this.levels[this.level][y][x]){
+                        this.levels[this.level][y][x] = 0
+                        this.ball.dy = - this.ball.dy
+                    }
+                })
         }
     }
 
