@@ -11,7 +11,9 @@ class Bricks {
         this.ball = ball
         this.height = config.brick.height
         this.width = this.gameWidth / this.levels[this.level][0].length
+        this.collisionTypes = { HARIZONTAL: 'HARIZONTAL', VERTICAL: 'VERTICAL'}
     }
+
 
     update(){
         const { topOfBall, bottomOfBall, leftOfBall, rightOfBall, centerCoordinates } = this.ball.getBallCoordinates()
@@ -20,16 +22,20 @@ class Bricks {
         if(bricksAreaHeight > topOfBall || bricksAreaHeight > bottomOfBall){
             const topOfTheBallBrickIndex = this.mapCoordinatesToBrickIndex(centerCoordinates.x, topOfBall);
             const bottomOfTheBallBrickIndex = this.mapCoordinatesToBrickIndex(centerCoordinates.x, bottomOfBall);
-            //collision detection and updated for the top and bottom tips of the ball
-            [topOfTheBallBrickIndex, bottomOfTheBallBrickIndex]
-                .forEach((brickIndex) => {
-                    const { x, y } = brickIndex
-                    if(this.levels[this.level][y] && this.levels[this.level][y][x]){
-                        this.levels[this.level][y][x] = 0
-                        this.ball.dy = - this.ball.dy
-                    }
-                })
+            const leftOfTheBallBrickIndex = this.mapCoordinatesToBrickIndex(leftOfBall, centerCoordinates.y);
+            const rightOfTheBallBrickIndex = this.mapCoordinatesToBrickIndex(rightOfBall.x, centerCoordinates.y);
+            //collision detection for the top and bottom tips of the ball
+            this.handleCollision(
+                [topOfTheBallBrickIndex, bottomOfTheBallBrickIndex],
+                this.collisionTypes.VERTICAL
+            )
+            //collision detection for the left and right and bottom tips of the ball
+            this.handleCollision(
+                [leftOfTheBallBrickIndex, rightOfTheBallBrickIndex],
+                this.collisionTypes.HARIZONTAL
+            )
         }
+
     }
 
     draw(ctx){
@@ -51,6 +57,20 @@ class Bricks {
                     )
                 }
             })
+        })
+    }
+
+    handleCollision(bricksIndices, collisionType){
+        bricksIndices.forEach((brickIndex) => {
+            const { x, y } = brickIndex
+            if(this.levels[this.level][y] && this.levels[this.level][y][x]){
+                this.levels[this.level][y][x] = 0
+                if(collisionType == this.collisionTypes.VERTICAL){
+                    this.ball.dy = - this.ball.dy
+                }else if(collisionType == this.collisionTypes.HARIZONTAL){
+                    this.ball.dx = - this.ball.dx
+                }
+            }
         })
     }
 
