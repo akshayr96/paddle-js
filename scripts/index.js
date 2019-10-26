@@ -11,6 +11,7 @@ let ctx = canvas.getContext('2d')
 canvas.width = config.game.width
 canvas.height = config.game.height
 
+
 let paddle = new Paddle(config)
 let ball = new Ball(config, paddle)
 let bricks = new Bricks(config, levels, ball)
@@ -18,6 +19,9 @@ new Events(paddle)
 
 function gameLoop(){
     ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     paddle.update()
     paddle.draw(ctx)

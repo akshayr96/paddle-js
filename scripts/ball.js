@@ -12,6 +12,7 @@ class Ball{
         this.dy = this.speed
         this.collision = false
         this.paddle = paddle
+        this.color = config.ball.color
     }
 
     update(){
@@ -21,7 +22,7 @@ class Ball{
     }
 
     draw(ctx){
-        ctx.fillStyle ='red'
+        ctx.fillStyle = this.color
         ctx.beginPath();
         ctx.arc(this.centerCoordinates.x, this.centerCoordinates.y, this.radius, 0, 2*Math.PI);
         ctx.fill()

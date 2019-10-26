@@ -10,6 +10,7 @@ class Paddle {
         }
         this.speed = 0
         this.maxSpeed = config.paddle.speed
+        this.color = config.paddle.color
     }
 
     update() {
@@ -18,7 +19,7 @@ class Paddle {
     }
 
     draw(ctx) {
-        ctx.fillStyle ='#66ccff'
+        ctx.fillStyle =this.color
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 

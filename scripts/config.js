@@ -5,18 +5,20 @@ let config = {
     },
     ball:{
         radius: 5,
-        speed: 5
+        speed: 5,
+        color: '#fff'
     },
     paddle:{
         width: 75,
         height: 10,
-        speed: 7
+        speed: 7,
+        color: 'red'
     },
     brick: {
         height: 15,
         border: 2,
-        fill: "#66ccff",
-        stroke: "#fff"
+        fill: "#c800ff",
+        stroke: "#000"
     }
 }
 
