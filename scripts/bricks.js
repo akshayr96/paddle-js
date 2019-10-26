@@ -12,8 +12,8 @@ class Bricks {
         this.height = config.brick.height
         this.width = this.gameWidth / this.levels[this.level][0].length
         this.collisionTypes = { HARIZONTAL: 'HARIZONTAL', VERTICAL: 'VERTICAL'}
+        this.totalBricks = this.getTotalBricks()
     }
-
 
     update(){
         const { topOfBall, bottomOfBall, leftOfBall, rightOfBall, centerCoordinates } = this.ball.getBallCoordinates()
@@ -81,6 +81,13 @@ class Bricks {
         }
     }
 
+    getTotalBricks(){
+        return this.levels[this.level].reduce((sum, row)=> {
+            return sum + row.reduce((rowTotal, brick) => {
+                return rowTotal + brick
+            },0)
+        },0)
+    }
 }
 
 export default Bricks
