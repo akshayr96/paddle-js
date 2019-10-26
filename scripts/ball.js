@@ -3,15 +3,13 @@ class Ball{
         this.gameWidth = config.game.width
         this.gameHeight = config.game.height
         this.radius = config.ball.radius
-        this.centerCoordinates = {
-            x: 0 + this.radius,
-            y: 0 + this.radius
-        }
+        this.paddle = paddle
+        this.centerCoordinates = { x: 0, y: 0 }
+        this.resetPosition()
         this.speed = config.ball.speed
         this.dx = this.speed
-        this.dy = this.speed
+        this.dy = - this.speed
         this.collision = false
-        this.paddle = paddle
         this.color = config.ball.color
     }
 
@@ -71,8 +69,8 @@ class Ball{
 
     resetPosition(){
         this.centerCoordinates = {
-            x: 0 + this.radius,
-            y: 0 + this.radius
+            x: 0 + this.paddle.position.x + (this.paddle.width/2),
+            y: 0 + this.gameHeight - this.paddle.height - this.radius
         }
     }
 }
