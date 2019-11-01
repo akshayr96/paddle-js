@@ -31,10 +31,21 @@
             font-family: sans-serif;
             font-size: 12px;
         }
+        .scores{
+            color: white;
+            display: flex;
+            justify-content: flex-end;
+            font-family: sans-serif;
+            font-size: 12px;
+            padding: 5px;
+        }
     </style>
 </head>
 <body>
-    <canvas id="game"></canvas>
+    <div class="container">
+        <div class="scores">Score&nbsp;<span id="scores">0</span></div>
+        <canvas id="game"></canvas>
+    </div>
     <div class="credits">
         Made with ❤️ by <a href="https://github.com/akshayr96/">Akshay Ramesh</a> (<a href="https://github.com/akshayr96/paddle-js">View Source</a>)
     </div>
