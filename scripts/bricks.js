@@ -24,6 +24,9 @@ class Bricks {
         }
     }
 
+    /**
+     * Update - Lifecycle method
+     */
     update(){
         const { topOfBall, bottomOfBall, leftOfBall, rightOfBall, centerCoordinates } = this.ball.getBallCoordinates()
         const bricksAreaHeight = this.height * this.levels[this.level].length
@@ -46,6 +49,10 @@ class Bricks {
         }
     }
 
+    /**
+     * Draw - lifecycle method
+     * @param {*} ctx canvas context
+     */
     draw(ctx){
         this.levels[this.level].forEach((row, rowIndex) => {
             row.forEach((brick, columnIndex) => {
@@ -68,6 +75,12 @@ class Bricks {
         })
     }
 
+    /**
+     * Handles collision betweem the ball and the bricks
+     * @param {{ x: number, y: number }[]} bricksIndices 
+     * @param {string} collisionType 
+     * @returns {number} returns the number of collisions detected
+     */
     handleCollision(bricksIndices, collisionType){
         let collisionsDetected = 0
         bricksIndices.forEach((brickIndex) => {
@@ -87,6 +100,11 @@ class Bricks {
         return collisionsDetected
     }
 
+    /**
+     * returns the the 2D Array index of brick that has the given coordinate
+     * @param {number} x coordinate
+     * @param {number} y coordinate
+     */
     mapCoordinatesToBrickIndex(x, y){
         return {
             x: truncateDecimals(x/this.width),
@@ -94,6 +112,9 @@ class Bricks {
         }
     }
 
+    /**
+     * Returns initial count of the bricks in the current level
+     */
     getTotalBricks(){
         return this.levels[this.level].reduce((sum, row)=> {
             return sum + row.reduce((rowTotal, brick) => {
