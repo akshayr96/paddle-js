@@ -15,22 +15,21 @@ canvas.height = config.game.height
 
 let scores = new Scores()
 let paddle = new Paddle(config)
-let ball = new Ball(config, paddle)
+let ball = new Ball(config, paddle, scores)
 let bricks = new Bricks(config, levels, ball, scores)
 new Events(paddle)
 
+const gameEntities = [paddle, ball, bricks, scores]
+
 function gameLoop(){
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-
     ctx.fillStyle = "#000";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    paddle.update()
-    paddle.draw(ctx)
-    ball.update()
-    ball.draw(ctx)
-    bricks.update(ctx)
-    bricks.draw(ctx)
+    gameEntities.forEach(entity => {
+        entity.update()
+        entity.draw(ctx)
+    })
 
     requestAnimationFrame(gameLoop)
 }
