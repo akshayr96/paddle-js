@@ -13,7 +13,7 @@ canvas.width = config.game.width
 canvas.height = config.game.height
 
 
-let scores = new Scores()
+let scores = new Scores(config)
 let paddle = new Paddle(config)
 let ball = new Ball(config, paddle, scores)
 let bricks = new Bricks(config, levels, ball, scores)

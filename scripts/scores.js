@@ -1,7 +1,7 @@
 class Scores{
-    constructor(){
-        this.defaultScore = 0
-        this.defaultLife = 3
+    constructor(config){
+        this.defaultScore = config.scores.score
+        this.defaultLife = config.scores.life
         this.scores = this.defaultScore
         this.life = this.defaultLife
     }

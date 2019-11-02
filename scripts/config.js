@@ -19,6 +19,10 @@ let config = {
         border: 2,
         fill: "#c800ff",
         stroke: "#000"
+    },
+    scores:{
+        life: 3,
+        score: 0
     }
 }
 
