@@ -15,7 +15,7 @@ let config = {
         color: 'red'
     },
     brick: {
-        height: 15,
+        height: 20,
         border: 2,
         fill: "#c800ff",
         stroke: "#000"

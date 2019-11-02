@@ -14,6 +14,7 @@ class Bricks {
         this.fill = config.brick.fill
         this.stroke = config.brick.stroke
         this.totalBricks = this.getTotalBricks()
+        this.activeBrickCount = this.totalBricks
         //other entities
         this.ball = ball
         this.scores = scores
@@ -46,6 +47,12 @@ class Bricks {
                 [leftOfTheBallBrickIndex, rightOfTheBallBrickIndex],
                 this.collisionTypes.HARIZONTAL
             )
+            if(this.activeBrickCount == 0 && this.levels[this.level + 1]){
+                this.ball.resetPosition()
+                this.level++
+                this.totalBricks = this.getTotalBricks()
+                this.activeBrickCount = this.totalBricks
+            }
         }
     }
 
@@ -82,13 +89,13 @@ class Bricks {
      * @returns {number} returns the number of collisions detected
      */
     handleCollision(bricksIndices, collisionType){
-        let collisionsDetected = 0
         bricksIndices.forEach((brickIndex) => {
             const { x, y } = brickIndex
             if(this.levels[this.level][y] && this.levels[this.level][y][x]){
                 if( this.levels[this.level][y][x]){
                     this.levels[this.level][y][x] = 0
                     this.scores.incrementScore()
+                    this.activeBrickCount--
                 }
                 if(collisionType == this.collisionTypes.VERTICAL){
                     this.ball.dy = - this.ball.dy
@@ -97,7 +104,6 @@ class Bricks {
                 }
             }
         })
-        return collisionsDetected
     }
 
     /**
