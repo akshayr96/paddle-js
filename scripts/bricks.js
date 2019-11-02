@@ -35,7 +35,7 @@ class Bricks {
             const topOfTheBallBrickIndex = this.mapCoordinatesToBrickIndex(centerCoordinates.x, topOfBall);
             const bottomOfTheBallBrickIndex = this.mapCoordinatesToBrickIndex(centerCoordinates.x, bottomOfBall);
             const leftOfTheBallBrickIndex = this.mapCoordinatesToBrickIndex(leftOfBall, centerCoordinates.y);
-            const rightOfTheBallBrickIndex = this.mapCoordinatesToBrickIndex(rightOfBall.x, centerCoordinates.y);
+            const rightOfTheBallBrickIndex = this.mapCoordinatesToBrickIndex(rightOfBall, centerCoordinates.y);
             //collision detection for the top and bottom tips of the ball
             this.handleCollision(
                 [topOfTheBallBrickIndex, bottomOfTheBallBrickIndex],
