@@ -1,4 +1,4 @@
-import { truncateDecimals } from "./../utils.js"
+import { truncateDecimals } from "../statics/utils"
 
 class Bricks {
     constructor(config, levels, ball, scores){
