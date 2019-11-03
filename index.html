@@ -6,48 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Paddle JS</title>
     <link rel="icon" href="/assets/favicon.png" type="image/gif" sizes="16x16">
-    <style>
-        body{
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background-color: #171717;
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
-        a{
-            color: #00b9ff;
-            text-decoration: none;
-        }
-        a:hover{
-            text-decoration: underline;
-        }
-        .credits{
-            position: absolute;
-            right: 10px;
-            bottom: 3vh;
-            color: white;
-            font-family: sans-serif;
-            font-size: 12px;
-        }
-        .scoreBoard{
-            display: flex;
-            justify-content: flex-end;
-        }
-        .score{
-            color: white;
-            font-family: sans-serif;
-            font-size: 12px;
-            padding: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
     <div class="container">
+        <div class="overlay"></div>
         <div class="scoreBoard">
-            <div class="score">Life&nbsp;<span id="life"></span></div>
-            &nbsp;&nbsp;
+            <div class="score">Life&nbsp;<span id="life"></span></div>&nbsp;&nbsp;
             <div class="score">Score&nbsp;<span id="scores"></span></div>
         </div>
         <canvas id="game"></canvas>
