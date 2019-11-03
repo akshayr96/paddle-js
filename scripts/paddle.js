@@ -1,7 +1,9 @@
 class Paddle {
     constructor(config) {
+        //global config
         this.gameWidth = config.game.width
         this.gameHeight = config.game.height
+        //paddle config
         this.width = config.paddle.width
         this.height = config.paddle.height
         this.position = {
@@ -14,7 +16,6 @@ class Paddle {
     }
 
     update() {
-        this.handleCollisions()
         this.position.x += this.speed
     }
 
@@ -30,13 +31,6 @@ class Paddle {
         return { topOfPaddle, rightOfPaddle, leftOfPaddle }
     }
 
-    handleCollisions(){
-        if(this.position.x < 0){
-            this.position.x = 0
-        }else if(this.position.x + this.width > this.gameWidth){
-            this.position.x = this.gameWidth - this.width
-        }
-    }
 
     moveLeft(){
         this.speed = -this.maxSpeed

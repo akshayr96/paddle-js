@@ -7,6 +7,7 @@ import Scores from "./scores"
 //Collision Imports
 import BallPaddleCollision from "./gameEngine/ballPaddle"
 import BallWallCollision from "./gameEngine/ballWall"
+import PaddleWallCollision from "./gameEngine/paddleWall"
 //Static Imports
 import config from './config.js'
 import levels from "./levels.js"
@@ -25,10 +26,12 @@ let bricks = new Bricks(config, levels, ball, scores)
 
 let ballPaddleCollision = new BallPaddleCollision(config, ball, paddle, scores)
 let ballWallCollision = new BallWallCollision(config, ball)
+let paddleWallCollision = new PaddleWallCollision(config, paddle)
+
 new Events(paddle)
 
 const gameEntities = [paddle, ball, bricks, scores]
-const gameEngine = [ballPaddleCollision, ballWallCollision]
+const gameEngine = [ballPaddleCollision, ballWallCollision, paddleWallCollision]
 
 function gameLoop(){
     ctx.clearRect(0, 0, canvas.width, canvas.height)
