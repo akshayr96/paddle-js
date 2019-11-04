@@ -1,5 +1,5 @@
 class Paddle {
-    constructor(config) {
+    constructor(config, gameState) {
         //global config
         this.gameWidth = config.game.width
         this.gameHeight = config.game.height
@@ -13,10 +13,14 @@ class Paddle {
         this.speed = 0
         this.maxSpeed = config.paddle.speed
         this.color = config.paddle.color
+        //other entities
+        this.gameState = gameState
     }
 
     update() {
-        this.position.x += this.speed
+        if(this.gameState.state == this.gameState.states.PLAY){
+            this.position.x += this.speed
+        }
     }
 
     draw(ctx) {

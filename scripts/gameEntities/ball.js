@@ -1,5 +1,5 @@
 class Ball{
-    constructor(config, paddle, scores){
+    constructor(config, paddle, gameState){
         //global config
         this.gameHeight = config.game.height
         this.speed = config.ball.speed
@@ -7,29 +7,27 @@ class Ball{
         this.radius = config.ball.radius
         this.centerCoordinates = { x: 0, y: 0 }
         this.color = config.ball.color
-        this.halt = false
         this.dx = this.speed
         this.dy = - this.speed
         //game entities
         this.paddle = paddle
+        this.gameState = gameState
         //other functions
         this.resetPosition()
     }
 
     update(){
-        if(!this.halt){
+        if(this.gameState.state == this.gameState.states.PLAY){
             this.centerCoordinates.x += this.dx
             this.centerCoordinates.y += this.dy
         }
     }
 
     draw(ctx){
-        if(!this.halt){
-            ctx.fillStyle = this.color
-            ctx.beginPath();
-            ctx.arc(this.centerCoordinates.x, this.centerCoordinates.y, this.radius, 0, 2*Math.PI);
-            ctx.fill()
-        }
+        ctx.fillStyle = this.color
+        ctx.beginPath();
+        ctx.arc(this.centerCoordinates.x, this.centerCoordinates.y, this.radius, 0, 2*Math.PI);
+        ctx.fill()
     }
 
     /**

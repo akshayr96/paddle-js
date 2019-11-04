@@ -3,9 +3,9 @@ import BallWallCollision from "./ballWall"
 import PaddleWallCollision from "./paddleWall"
 
 class CollisionEngine {
-    constructor(config, ball, paddle, scores){
+    constructor(config, ball, paddle, gameState){
         this.collisionHandlers = [
-            new BallPaddleCollision(config, ball, paddle, scores),
+            new BallPaddleCollision(config, ball, paddle, gameState),
             new BallWallCollision(config, ball),
             new PaddleWallCollision(config, paddle)
         ]

@@ -1,12 +1,12 @@
 class BallPaddleCollision {
-    constructor(config, ball, paddle, scores){
+    constructor(config, ball, paddle, gameState){
         //game config
         this.gameWidth = config.game.width
         this.gameHeight = config.game.height
         //game entities
         this.ball = ball
         this.paddle = paddle
-        this.scores = scores
+        this.gameState = gameState
     }
 
     handleCollision(){
@@ -23,8 +23,7 @@ class BallPaddleCollision {
                 this.ball.dy = -this.ball.dy
             }else{
                 this.ball.resetPosition()
-                this.scores.decrementLife()
-                this.ball.halt = !!!this.scores.life
+                this.gameState.decrementLife()
             }
         }
     }

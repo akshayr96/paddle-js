@@ -1,12 +1,11 @@
 import { truncateDecimals } from "../statics/utils"
 
 class Bricks {
-    constructor(config, levels, ball, scores){
+    constructor(config, levels, ball, gameState){
         //global config
         this.gameWidth = config.game.width
         this.level = 0
         this.levels = levels
-        this.score = 0
         //brick config
         this.width = this.gameWidth / this.levels[this.level][0].length
         this.height = config.brick.height
@@ -17,7 +16,7 @@ class Bricks {
         this.activeBrickCount = this.totalBricks
         //other entities
         this.ball = ball
-        this.scores = scores
+        this.gameState = gameState
         //constants
         this.collisionTypes = { 
             HARIZONTAL: 'HARIZONTAL',
@@ -94,7 +93,7 @@ class Bricks {
             if(this.levels[this.level][y] && this.levels[this.level][y][x]){
                 if( this.levels[this.level][y][x]){
                     this.levels[this.level][y][x] = 0
-                    this.scores.incrementScore()
+                    this.gameState.incrementScore()
                     this.activeBrickCount--
                 }
                 if(collisionType == this.collisionTypes.VERTICAL){
