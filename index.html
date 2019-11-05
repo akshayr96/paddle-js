@@ -6,14 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Paddle JS</title>
     <link rel="icon" href="/assets/favicon.png" type="image/gif" sizes="16x16">
+    <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
     <div class="container">
-        <div id="overlay" class="overlay">
-            <div style="font-size: 36px;" class="highlight-text">Paddle JS</div>
-            <div style="margin-top: 10px;">Press <span class="highlight-text">←</span> or <span class="highlight-text">→</span> for navigation</div>
-            <div style="margin-top: 5px;">Hit <span class="highlight-text">[ Space Bar ]</span> to start</div>
+        <div id="game-over-screen" class="overlay">
+                <div class="highlight-text header-text">GAME OVER</div>
+                <div class="margin-top-10">Your Score is <span id="final-score"></span></div>
+        </div>
+        <div id="pause-screen" class="overlay">
+            <div class="header-text">PADDLE-JS</div>
+            <div class="margin-top-10">Press <span class="highlight-text">←</span> or <span class="highlight-text">→</span> for navigation</div>
+            <div class="margin-top-5">Hit <span class="highlight-text">[ Space Bar ]</span> to start</div>
         </div>
         <div class="scoreBoard">
             <div class="score">Life&nbsp;<span id="life"></span></div>&nbsp;&nbsp;

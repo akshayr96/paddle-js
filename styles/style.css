@@ -51,3 +51,20 @@ a:hover{
 .highlight-text{
     color: #c800ff;
 }
+
+.header-text{
+    font-size: 36px;
+    font-family: 'Monoton', cursive;
+}
+
+.margin-top-10{
+    margin-top: 10px;
+}
+
+.margin-top-5{
+    margin-top: 5px;
+}
+
+#game-over-screen{
+    visibility: hidden;
+}

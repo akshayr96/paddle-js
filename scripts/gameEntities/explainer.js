@@ -1,17 +1,22 @@
 class Explainer {
     constructor(gameState){
         this.gameState = gameState
-        this.overlay = document.getElementById("overlay")
+        this.pauseTemplate = document.getElementById("pause-screen")
+        this.gameOverTemplate = document.getElementById("game-over-screen")
     }
 
     update(){
-        if(this.gameState.life > 0){
+        if(this.gameState.state == this.gameState.states.GAME_OVER){
+            this.gameOverTemplate.style.visibility = "visible"
+            document.getElementById("final-score").innerHTML = this.gameState.scores
+        }else{
+            this.gameOverTemplate.style.visibility = "hidden"
             switch(this.gameState.state){
                 case this.gameState.states.PAUSE:
-                    this.overlay.style.visibility = "visible"
+                    this.pauseTemplate.style.visibility = "visible"
                     break
                 case this.gameState.states.PLAY:
-                    this.overlay.style.visibility = "hidden"
+                    this.pauseTemplate.style.visibility = "hidden"
                     break
             }
         }

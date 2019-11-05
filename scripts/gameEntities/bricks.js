@@ -6,6 +6,8 @@ class Bricks {
         this.gameWidth = config.game.width
         this.level = 0
         this.levels = levels
+        this.currentLevel = []
+        this.setLevel()
         //brick config
         this.width = this.gameWidth / this.levels[this.level][0].length
         this.height = config.brick.height
@@ -28,6 +30,9 @@ class Bricks {
      * Update - Lifecycle method
      */
     update(){
+        if(this.gameState.state == this.gameState.states.GAME_OVER && this.level > 0){
+            this.setLevel(0)
+        }
         const { topOfBall, bottomOfBall, leftOfBall, rightOfBall, centerCoordinates } = this.ball.getBallCoordinates()
         const bricksAreaHeight = this.height * this.levels[this.level].length
         //Checks if the ball is in the area of the bricks
@@ -49,6 +54,7 @@ class Bricks {
             if(this.activeBrickCount == 0 && this.levels[this.level + 1]){
                 this.ball.resetPosition()
                 this.level++
+                this.setLevel()
                 this.totalBricks = this.getTotalBricks()
                 this.activeBrickCount = this.totalBricks
             }
@@ -60,7 +66,7 @@ class Bricks {
      * @param {*} ctx canvas context
      */
     draw(ctx){
-        this.levels[this.level].forEach((row, rowIndex) => {
+        this.currentLevel.forEach((row, rowIndex) => {
             row.forEach((brick, columnIndex) => {
                 if(brick){
                     const xCoordinate = columnIndex * this.width
@@ -90,9 +96,9 @@ class Bricks {
     handleCollision(bricksIndices, collisionType){
         bricksIndices.forEach((brickIndex) => {
             const { x, y } = brickIndex
-            if(this.levels[this.level][y] && this.levels[this.level][y][x]){
-                if( this.levels[this.level][y][x]){
-                    this.levels[this.level][y][x] = 0
+            if(this.currentLevel[y] && this.currentLevel[y][x]){
+                if( this.currentLevel[y][x]){
+                    this.currentLevel[y][x] = 0
                     this.gameState.incrementScore()
                     this.activeBrickCount--
                 }
@@ -126,6 +132,15 @@ class Bricks {
                 return rowTotal + brick
             },0)
         },0)
+    }
+
+    /**
+     * sets the current level to a particular level
+     */
+    setLevel(level = this.level){
+        const nextLevel = this.levels[level] ? level : 0
+        this.level = nextLevel
+        this.currentLevel = JSON.parse(JSON.stringify(this.levels[nextLevel]))
     }
 }
 
